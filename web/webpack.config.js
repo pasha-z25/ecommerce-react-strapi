@@ -12,8 +12,7 @@ const config = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'common.css',
-        }),
-        'postcss-preset-env',
+        })
     ],
     module: {
         rules: [
