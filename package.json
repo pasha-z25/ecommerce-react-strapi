@@ -4,6 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "lerna run build --parallel",
+    "dev": "lerna run dev --parallel",
+    "format": "lerna run format",
+    "graphql-deploy": "lerna run graphql-deploy",
+    "lint": "lerna run lint",
+    "postinstall": "lerna bootstrap",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/pasha-z25/ecommerce-react-strapi/issues"
   },
-  "homepage": "https://github.com/pasha-z25/ecommerce-react-strapi#readme"
+  "homepage": "https://github.com/pasha-z25/ecommerce-react-strapi#readme",
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
 }
