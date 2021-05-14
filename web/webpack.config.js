@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config = {
     devtool: 'eval-source-map',
     entry: './src/main.js',
+    watch: true,
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
