@@ -1,19 +1,27 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
+    mode: 'development',
     devtool: 'eval-source-map',
+    devServer: {
+        contentBase: './dist',
+        hot: true,
+    },
     entry: './src/main.js',
     watch: true,
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
-        publicPath: 'dist/'
+        publicPath: './dist',
+        clean: true,
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'common.css',
-        })
+        }),
+        new HtmlWebpackPlugin()
     ],
     module: {
         rules: [

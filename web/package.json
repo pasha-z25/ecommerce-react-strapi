@@ -4,7 +4,8 @@
   "description": "",
   "private": true,
   "scripts": {
-    "dev": "webpack serve --mode development --open",
+    "devss": "webpack serve --mode development --progress --hot --open",
+    "dev": "webpack --mode development --hot",
     "build": "webpack --mode production"
   },
   "keywords": [],
@@ -12,17 +13,18 @@
   "license": "ISC",
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "@hot-loader/react-dom": "^17.0.1"
   },
   "devDependencies": {
     "@apollo/client": "^3.3.18",
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.0",
     "@babel/preset-react": "^7.13.13",
-    "@hot-loader/react-dom": "^17.0.1",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.4",
     "eslint": "^7.26.0",
+    "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
     "postcss": "^8.2.14",
     "postcss-loader": "^5.2.0",
