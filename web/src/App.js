@@ -1,28 +1,28 @@
 import React from 'react'
-// import { gql, useQuery } from '@apollo/client'
+import { useQuery, gql } from '@apollo/client'
+import { Header } from './scenes/Header'
 
 const App = () => {
-  console.log('2')
-  // const { loading, error, data } = useQuery(gql`
-  //   query Category {
-  //     category {
-  //       id
-  //       name
-  //       description
-  //       categories {
-  //         name
-  //       }
-  //     }
-  //   }
-  // `);
-  //
-  // if (loading) return 'Loading...';
-  // if (error) return `Error! ${error.message}`;
-  // console.log(data)
+
+  const { loading, error, data } = useQuery(gql`
+    query Categories {
+      categories {
+        id
+        Title
+        created_at
+        updated_at
+        published_at
+      }
+    }
+  `);
+  console.log(data)
 
   return (
     <div>
-      <span>Hello world! 123 sgbsf g df</span>
+      {loading && <div>Loading...</div>}
+      {error && <div>{`Error! ${error.message}`}</div>}
+      <span>Hello world!</span>
+      <Header />
       <hr/>
     </div>
   )
