@@ -15,7 +15,8 @@ const App = () => {
       }
     }
   `);
-  console.log(data)
+
+  if (data) {console.log(data)}
 
   return (
     <div>
