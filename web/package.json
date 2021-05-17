@@ -5,33 +5,49 @@
   "private": true,
   "scripts": {
     "dev": "webpack serve --mode development --open",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "stylelint": "stylelint 'src/**/*{.css,.scss}'",
+    "stylelint:fix": "stylelint 'src/**/*{.css,.scss}' --fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.3.18",
+    "graphql": "^15.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "@apollo/client": "^3.3.18"
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.0",
     "@babel/preset-react": "^7.13.13",
+    "@trivago/prettier-plugin-sort-imports": "^2.0.2",
+    "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.4",
+    "dotenv": "^9.0.2",
     "eslint": "^7.26.0",
+    "eslint-config-halo-lab": "^1.0.16",
     "html-webpack-plugin": "^5.3.1",
     "mini-css-extract-plugin": "^1.6.0",
-    "postcss": "^8.2.14",
+    "postcss": "^8.2.15",
     "postcss-loader": "^5.2.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
+    "prettier-config-halo-lab": "^1.0.7",
     "sass": "^1.32.12",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
+    "stylelint-config-halo-lab": "^1.0.4",
+    "tailwindcss": "^2.1.2",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
-  }
+  },
+  "prettier": "prettier-config-halo-lab",
+  "ignoreFiles": [
+    "src/**/_*.scss",
+    "src/**/_*.css"
+  ]
 }
