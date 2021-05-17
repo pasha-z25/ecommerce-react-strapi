@@ -2,26 +2,42 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+
 const config = {
-    mode: 'development',
+    mode: isDevelopment ? 'development' : 'production',
     devtool: 'eval-source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-    },
     entry: './src/main.js',
-    watch: true,
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
-        publicPath: './dist',
         clean: true,
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'common.css',
         }),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            title: 'Custom React Application',
+            'meta': {
+                'viewport': 'width=device-width, initial-scale=1',
+            },
+            inject: false,
+            templateContent: ({htmlWebpackPlugin}) => `
+                <!DOCTYPE html>
+                <html>
+                    <head>
+                        <meta charset="utf-8"/>
+                        <title>${htmlWebpackPlugin.options.title}</title>
+                        ${htmlWebpackPlugin.tags.headTags}
+                    </head>
+                    <body>
+                        <div id="app"></div>
+                        ${htmlWebpackPlugin.tags.bodyTags}
+                    </body>
+                </html>
+              `
+        })
     ],
     module: {
         rules: [
