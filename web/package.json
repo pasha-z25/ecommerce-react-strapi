@@ -4,8 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "devss": "webpack serve --mode development --progress --hot --open",
-    "dev": "webpack --mode development --hot",
+    "dev": "webpack serve --mode development --open",
     "build": "webpack --mode production"
   },
   "keywords": [],
@@ -14,10 +13,9 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "@hot-loader/react-dom": "^17.0.1"
+    "@apollo/client": "^3.3.18"
   },
   "devDependencies": {
-    "@apollo/client": "^3.3.18",
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.0",
     "@babel/preset-react": "^7.13.13",
