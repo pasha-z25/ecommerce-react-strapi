@@ -1,5 +1,5 @@
 import React from 'react'
-// import { getRandomNumberInInterval } from '@utils/helpers'
+// import { getRandomNumberInInterval } from '~utils/helpers'
 
 const Home = () => {
   // console.log(getRandomNumberInInterval(1, 10))

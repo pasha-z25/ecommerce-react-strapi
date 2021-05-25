@@ -17,9 +17,9 @@ const config = {
   },
   resolve: {
     alias: {
-      '@utils': path.resolve(__dirname, 'src/utils/'),
-      '@scenes': path.resolve(__dirname, 'src/scenes/'),
-      '@components': path.resolve(__dirname, 'src/components/')
+      '~utils': path.resolve(__dirname, 'src/utils/'),
+      '~scenes': path.resolve(__dirname, 'src/scenes/'),
+      '~components': path.resolve(__dirname, 'src/components/')
     }
   },
   plugins: [
