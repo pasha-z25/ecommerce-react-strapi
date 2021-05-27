@@ -1,4 +1,2 @@
 import products from './Products'
-export {
-  products
-}
+export default products
