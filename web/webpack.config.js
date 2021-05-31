@@ -9,6 +9,11 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 const config = {
   mode: isDevelopment ? 'development' : 'production',
   devtool: 'eval-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot: true,
+    liveReload: false
+  },
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
