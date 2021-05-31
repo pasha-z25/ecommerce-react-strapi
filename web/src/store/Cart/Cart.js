@@ -1,13 +1,16 @@
 import { makeAutoObservable } from 'mobx'
 
-function products(value = []) {
+function shopCart(value = []) {
   return makeAutoObservable({
     value,
-    get getProducts() {
-      return this.value
+    get double() {
+      return this.value * 2
     },
-    get getLength() {
+    get valueLength() {
       return this.value.length
+    },
+    increment() {
+      this.value++
     },
     setValue(val) {
       this.value = val
@@ -15,4 +18,4 @@ function products(value = []) {
   })
 }
 
-export default products()
+export default shopCart()
