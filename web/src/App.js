@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Header } from './scenes/Header'
 import { Home } from './scenes/HomePage'
 import { Products } from './scenes/Products'
+import { products } from './store'
 
 const App = () => {
   const { loading, error, data } = useQuery(gql`
@@ -39,9 +40,11 @@ const App = () => {
   `)
 
   if (data) {
-    const { categories, products } = data
-    console.log(categories)
-    console.log(products)
+    // console.log(data.products)
+    // console.log(data.categories)
+    // const { categories, products } = data
+
+    products.setValue(data.products)
   }
 
 
