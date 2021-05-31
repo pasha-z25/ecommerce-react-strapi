@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Link, useRouteMatch } from 'react-router-dom'
 import { Product } from '../Product'
+import { products } from '../../store'
 
 const Products = () => {
   const { path, url } = useRouteMatch()
@@ -24,6 +25,19 @@ const Products = () => {
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet assumenda, beatae consequatur
             cupiditate dicta dolorum esse est id labore neque nostrum officia pariatur perspiciatis porro quam rem
             repellendus soluta?</p>
+          <br/>
+          <hr/>
+          {products.getProducts.map((product) => {
+            return(
+              <div key={product.id}>
+                <br/>
+                <p>{product.Title}</p>
+                <p>{product.Description}</p>
+                <br/>
+                <hr/>
+              </div>
+            )
+          })}
         </Route>
         <Route path={`${path}/:topicId`}>
           <Product />
