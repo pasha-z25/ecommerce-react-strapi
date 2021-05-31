@@ -1,4 +1,5 @@
 import React from 'react'
+import { hot } from 'react-hot-loader/root'
 import { useQuery, gql } from '@apollo/client'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Header } from './scenes/Header'
@@ -67,4 +68,4 @@ const App = () => {
   )
 }
 
-export default App
+export default hot(App)

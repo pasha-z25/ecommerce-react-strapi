@@ -14,7 +14,8 @@ const config = {
     hot: true,
     liveReload: false
   },
-  entry: './src/main.js',
+  // entry: './src/main.js',
+  entry: ['react-hot-loader/patch', './src/main.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
@@ -22,6 +23,7 @@ const config = {
   },
   resolve: {
     alias: {
+      // 'react-dom': '@hot-loader/react-dom',
       '~utils': path.resolve(__dirname, 'src/utils/'),
       '~scenes': path.resolve(__dirname, 'src/scenes/'),
       '~components': path.resolve(__dirname, 'src/components/')
