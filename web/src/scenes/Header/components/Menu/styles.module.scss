@@ -1,0 +1,10 @@
+@import '~styles/variables';
+
+.menu {
+  display: flex;
+  color: $color-black;
+
+  li + li {
+    margin-left: 15px;
+  }
+}
