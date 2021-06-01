@@ -113,10 +113,19 @@ const config = {
         ]
       },
       {
+        // test: /^((?!\.module).)*s[ac]ss$/i,
+        // test: /\.s[ac]ss$/i,
         test: /^((?!\.module).)*s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          // 'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+              modules: false
+            }
+          },
           'postcss-loader',
           'sass-loader'
         ]
