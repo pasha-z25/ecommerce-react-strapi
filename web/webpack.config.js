@@ -23,9 +23,12 @@ const config = {
   },
   resolve: {
     alias: {
-      // 'react-dom': '@hot-loader/react-dom',
+      'react-dom': '@hot-loader/react-dom',
+      '~src': path.resolve(__dirname, 'src/'),
       '~utils': path.resolve(__dirname, 'src/utils/'),
+      '~assets': path.resolve(__dirname, 'src/assets/'),
       '~scenes': path.resolve(__dirname, 'src/scenes/'),
+      '~styles': path.resolve(__dirname, 'src/styles/'),
       '~components': path.resolve(__dirname, 'src/components/')
     }
   },
