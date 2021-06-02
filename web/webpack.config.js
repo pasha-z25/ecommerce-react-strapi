@@ -104,7 +104,7 @@ const config = {
             options: {
               importLoaders: 2,
               modules: {
-                localIdentName: '[local]__[sha1:hash:hex:7]'
+                localIdentName: '[local]__[sha1:hash:hex:10]'
               }
             }
           },
@@ -113,19 +113,11 @@ const config = {
         ]
       },
       {
-        // test: /^((?!\.module).)*s[ac]ss$/i,
-        // test: /\.s[ac]ss$/i,
+        // test: /^((?!\.module).)*(sass|scss)$/i,
         test: /^((?!\.module).)*s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          // 'css-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              modules: false
-            }
-          },
+          'css-loader',
           'postcss-loader',
           'sass-loader'
         ]
