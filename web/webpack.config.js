@@ -1,8 +1,12 @@
 const path = require('path')
 const dotenv = require('dotenv')
 const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -14,11 +18,14 @@ const config = {
     hot: true,
     liveReload: false
   },
-  // entry: './src/main.js',
   entry: ['react-hot-loader/patch', './src/main.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    // filename: 'main.js',
+    // chunkFilename: '[id].js',
+    chunkFilename: (pathData) => {
+      return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js'
+    },
     clean: true
   },
   resolve: {
@@ -33,8 +40,11 @@ const config = {
     }
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.config().parsed)
+      'process.env': JSON.stringify(dotenv.config().parsed),
+      'process.env.NODE_ENV': '"production"'
     }),
     new MiniCssExtractPlugin({
       filename: 'common.css'
@@ -77,26 +87,7 @@ const config = {
         type: 'asset/resource'
       },
       {
-        test: /\.module\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[local]__[sha1:hash:hex:7]'
-              }
-            }
-          },
-          'postcss-loader'
-        ]
-      },
-      {
-        test: /^((?!\.module).)*css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.module\.s[ac]ss$/i,
+        test: /\.module\.(css|sass|scss)$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -113,8 +104,7 @@ const config = {
         ]
       },
       {
-        // test: /^((?!\.module).)*(sass|scss)$/i,
-        test: /^((?!\.module).)*s[ac]ss$/i,
+        test: /^((?!\.module).)*.(css|sass|scss)$/i,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
@@ -123,6 +113,13 @@ const config = {
         ]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
+    minimize: true,
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()]
   }
 }
 
