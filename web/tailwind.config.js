@@ -1,4 +1,8 @@
 module.exports = {
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.js']
+  },
   theme: {
     extend: {
       screens: {
@@ -6,7 +10,7 @@ module.exports = {
         lg: '992px'
       },
       colors: {
-        transparent: 'transparent',
+        transparent: 'transparent'
       },
       backgroundColor: {
         blue: '#146ba3'
