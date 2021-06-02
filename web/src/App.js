@@ -7,6 +7,9 @@ import { Home } from './scenes/HomePage'
 import { Products } from './scenes/Products'
 import { products } from './store'
 
+// import './styles/style.css'
+import './styles/index.scss'
+
 const App = () => {
   const { loading, error, data } = useQuery(gql`
     query Categories {
