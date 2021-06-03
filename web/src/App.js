@@ -10,7 +10,6 @@ import { products } from './store'
 import 'tailwindcss/base.css'
 import 'tailwindcss/utilities.css'
 import 'tailwindcss/components.css'
-import './styles/style.css'
 import './styles/index.scss'
 
 const App = () => {
@@ -18,24 +17,40 @@ const App = () => {
     query Categories {
       categories {
         id
-        Title
-        created_at
-        updated_at
-        published_at
+        title
+        slug  
+        description  
+        photo {
+            id
+            name
+            url
+            caption
+            alternativeText
+        }
       }
       products {
         id
         created_at
-        Title
-        Slug
+        title
+        slug
         category {
           id
+          title
+          slug
+          description
+          photo {
+              id
+              name
+              url
+              caption
+              alternativeText
+          }
         }
-        Description
-        Price
-        InStock
-        OfficialPage
-        Photo {
+        description
+        price
+        inStock
+        officialPage
+        photo {
           id
           name
           url
@@ -47,8 +62,8 @@ const App = () => {
   `)
 
   if (data) {
-    // console.log(data.products)
-    // console.log(data.categories)
+    console.log(data.products)
+    console.log(data.categories)
     // const { categories, products } = data
 
     products.setValue(data.products)
