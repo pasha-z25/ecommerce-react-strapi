@@ -1,7 +1,8 @@
 import React from 'react'
 import { Switch, Route, Link, useRouteMatch } from 'react-router-dom'
-import { Product } from '../Product'
-import { products } from '../../store'
+import { Product } from './Product'
+import { products } from '~store'
+import { ProductCard } from '~components/ProductCard'
 
 const Products = () => {
   const { path, url } = useRouteMatch()
@@ -27,21 +28,18 @@ const Products = () => {
             repellendus soluta?</p>
           <br/>
           <hr/>
-          {products.getProducts.map((product) => {
-            return(
-              <div key={product.id}>
-                <br/>
-                <p>{product.Title}</p>
-                <p>{product.Description}</p>
-                <br/>
-                <hr/>
-              </div>
-            )
-          })}
+          <div style={{
+            display: 'grid',
+            gap: '30px',
+            gridTemplateColumns: 'repeat(3, 1fr)'
+          }}>
+            {products.getProducts.map((product) => {
+              return <ProductCard key={product.id} product={product} />
+            })}
+          </div>
+
         </Route>
-        <Route path={`${path}/:topicId`}>
-          <Product />
-        </Route>
+        <Route path={`${path}/:slug`} component={Product} />
       </Switch>
     </section>
   )
