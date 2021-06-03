@@ -16,15 +16,19 @@ const config = {
   devServer: {
     contentBase: './dist',
     hot: true,
-    liveReload: false
+    liveReload: false,
+    // stats: 'errors-warnings'
+    // stats: 'errors-only'
+    stats: {
+      assets: false,
+      modules: false
+    }
   },
   entry: ['react-hot-loader/patch', './src/main.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    // filename: 'main.js',
-    // chunkFilename: '[id].js',
-    chunkFilename: (pathData) => {
-      return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js'
+    filename: (pathData) => {
+      return pathData.chunk.name === 'main' ? '[name].js' : 'chunk__[hash].js'
     },
     clean: true
   },
@@ -32,6 +36,7 @@ const config = {
     alias: {
       'react-dom': '@hot-loader/react-dom',
       '~src': path.resolve(__dirname, 'src/'),
+      '~store': path.resolve(__dirname, 'src/store/'),
       '~utils': path.resolve(__dirname, 'src/utils/'),
       '~assets': path.resolve(__dirname, 'src/assets/'),
       '~scenes': path.resolve(__dirname, 'src/scenes/'),
@@ -43,11 +48,12 @@ const config = {
     // new BundleAnalyzerPlugin(),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.config().parsed),
-      'process.env.NODE_ENV': '"production"'
+      'process.env': JSON.stringify(dotenv.config().parsed)
     }),
     new MiniCssExtractPlugin({
-      filename: 'common.css'
+      filename: (pathData) => {
+        return pathData.chunk.name === 'main' ? 'common.css' : 'chunk__[hash].css'
+      }
     }),
     new HtmlWebpackPlugin({
       title: 'Custom React Application',
