@@ -46,6 +46,7 @@ const App = () => {
               alternativeText
           }
         }
+        introText
         description
         price
         inStock
