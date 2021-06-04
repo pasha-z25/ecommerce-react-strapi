@@ -21,7 +21,8 @@
       "type": "uid",
       "required": true,
       "minLength": 5,
-      "maxLength": 256
+      "maxLength": 256,
+      "targetField": "title"
     },
     "category": {
       "model": "category"
@@ -51,6 +52,11 @@
     },
     "officialPage": {
       "type": "string"
+    },
+    "introText": {
+      "type": "text",
+      "required": false,
+      "default": "Intro text for card"
     }
   }
 }
