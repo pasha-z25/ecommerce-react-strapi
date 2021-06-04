@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
+// import ReactMarkdown from 'react-markdown'
 import { ImageSlider } from './components/ImageSlider'
 
 const ProductCard = ({ product }) => {
@@ -9,11 +9,12 @@ const ProductCard = ({ product }) => {
 
   return(
     <div className='relative'>
-      <ImageSlider images={product.photo} />
-      <p>{ product.title }</p>
-      <div>
-        <ReactMarkdown>{ product.description }</ReactMarkdown>
+      <div className='relative slider-wrapper' style={{ paddingTop: '60%', marginTop: '15px', marginBottom: '15px'}}>
+        <ImageSlider images={product.photo} />
       </div>
+      <h3>{ product.title }</h3>
+      <p>{ product.introText }</p>
+      {/* <div><ReactMarkdown>{ product.description }</ReactMarkdown></div> */}
       <p>${ product.price }</p>
       <p>
         <Link to={`${process.env.PRODUCTS_SLUG}/${product.category.slug}`}>{product.category.title}</Link>

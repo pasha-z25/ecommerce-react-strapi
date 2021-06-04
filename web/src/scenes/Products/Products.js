@@ -7,7 +7,7 @@ import { ProductCard } from '~components/ProductCard'
 const Products = () => {
   const { path, url } = useRouteMatch()
   return (
-    <section>
+    <section className='container mx-auto'>
       <Switch>
         <Route exact path={path}>
           <h2>Products</h2>
