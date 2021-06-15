@@ -7,29 +7,51 @@ import { Home } from './scenes/HomePage'
 import { Products } from './scenes/Products'
 import { products } from './store'
 
+import 'tailwindcss/base.css'
+import 'tailwindcss/utilities.css'
+import 'tailwindcss/components.css'
+import './styles/index.scss'
+
 const App = () => {
   const { loading, error, data } = useQuery(gql`
     query Categories {
       categories {
         id
-        Title
-        created_at
-        updated_at
-        published_at
+        title
+        slug  
+        description  
+        photo {
+            id
+            name
+            url
+            caption
+            alternativeText
+        }
       }
       products {
         id
         created_at
-        Title
-        Slug
+        title
+        slug
         category {
           id
+          title
+          slug
+          description
+          photo {
+              id
+              name
+              url
+              caption
+              alternativeText
+          }
         }
-        Description
-        Price
-        InStock
-        OfficialPage
-        Photo {
+        introText
+        description
+        price
+        inStock
+        officialPage
+        photo {
           id
           name
           url
@@ -41,8 +63,8 @@ const App = () => {
   `)
 
   if (data) {
-    // console.log(data.products)
-    // console.log(data.categories)
+    console.log(data.products)
+    console.log(data.categories)
     // const { categories, products } = data
 
     products.setValue(data.products)

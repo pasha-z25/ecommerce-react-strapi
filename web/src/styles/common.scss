@@ -4,5 +4,14 @@ html {
   font-family: $primary-font;
 }
 body {
-  color: red;
+  font-size: $basic-font-size;
+}
+.swiper-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  position: absolute;
+  top: 0;
+}
+.pattaya {
+  font-family: $secondary-font;
 }

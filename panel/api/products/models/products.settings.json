@@ -12,35 +12,35 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true,
       "unique": true
     },
-    "Slug": {
+    "slug": {
       "type": "uid",
       "required": true,
       "minLength": 5,
       "maxLength": 256,
-      "targetField": "Title"
+      "targetField": "title"
     },
     "category": {
       "model": "category"
     },
-    "Description": {
+    "description": {
       "type": "richtext"
     },
-    "Price": {
+    "price": {
       "type": "decimal",
       "required": true,
       "default": 0
     },
-    "InStock": {
+    "inStock": {
       "type": "boolean",
       "default": true,
       "required": true
     },
-    "Photo": {
+    "photo": {
       "collection": "file",
       "via": "related",
       "allowedTypes": [
@@ -50,8 +50,13 @@
       "required": true,
       "pluginOptions": {}
     },
-    "OfficialPage": {
+    "officialPage": {
       "type": "string"
+    },
+    "introText": {
+      "type": "text",
+      "required": false,
+      "default": "Intro text for card"
     }
   }
 }

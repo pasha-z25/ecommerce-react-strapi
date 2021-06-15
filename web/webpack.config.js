@@ -1,8 +1,12 @@
 const path = require('path')
 const dotenv = require('dotenv')
 const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -12,19 +16,27 @@ const config = {
   devServer: {
     contentBase: './dist',
     hot: true,
-    liveReload: false
+    liveReload: false,
+    // stats: 'errors-warnings'
+    // stats: 'errors-only'
+    stats: {
+      assets: false,
+      modules: false
+    }
   },
-  // entry: './src/main.js',
   entry: ['react-hot-loader/patch', './src/main.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: (pathData) => {
+      return pathData.chunk.name === 'main' ? '[name].js' : 'chunk__[hash].js'
+    },
     clean: true
   },
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom',
       '~src': path.resolve(__dirname, 'src/'),
+      '~store': path.resolve(__dirname, 'src/store/'),
       '~utils': path.resolve(__dirname, 'src/utils/'),
       '~assets': path.resolve(__dirname, 'src/assets/'),
       '~scenes': path.resolve(__dirname, 'src/scenes/'),
@@ -33,11 +45,15 @@ const config = {
     }
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(dotenv.config().parsed)
     }),
     new MiniCssExtractPlugin({
-      filename: 'common.css'
+      filename: (pathData) => {
+        return pathData.chunk.name === 'main' ? 'common.css' : 'chunk__[hash].css'
+      }
     }),
     new HtmlWebpackPlugin({
       title: 'Custom React Application',
@@ -77,26 +93,7 @@ const config = {
         type: 'asset/resource'
       },
       {
-        test: /\.module\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[local]__[sha1:hash:hex:7]'
-              }
-            }
-          },
-          'postcss-loader'
-        ]
-      },
-      {
-        test: /^((?!\.module).)*css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.module\.s[ac]ss$/i,
+        test: /\.module\.(css|sass|scss)$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -104,7 +101,7 @@ const config = {
             options: {
               importLoaders: 2,
               modules: {
-                localIdentName: '[local]__[sha1:hash:hex:7]'
+                localIdentName: '[local]__[sha1:hash:hex:10]'
               }
             }
           },
@@ -113,24 +110,22 @@ const config = {
         ]
       },
       {
-        // test: /^((?!\.module).)*s[ac]ss$/i,
-        // test: /\.s[ac]ss$/i,
-        test: /^((?!\.module).)*s[ac]ss$/i,
+        test: /^((?!\.module).)*.(css|sass|scss)$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          // 'css-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              modules: false
-            }
-          },
+          'css-loader',
           'postcss-loader',
           'sass-loader'
         ]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
+    minimize: true,
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()]
   }
 }
 
