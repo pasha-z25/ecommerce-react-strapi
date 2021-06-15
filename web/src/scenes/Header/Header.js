@@ -1,19 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Menu } from './components/Menu'
+import styles from './styles.module.scss'
+import Logo from '~assets/icons/Webpack_and_React.png'
 
 const Header = () => {
   return (
-    <header>
-      <nav className='py-5 container mx-auto'>
-        <ul>
-          <li>
-            <Link to='/'>Home</Link>
-          </li>
-          <li>
-            <Link to='/products'>Products</Link>
-          </li>
-        </ul>
-      </nav>
+    <header className={styles.header}>
+      <div className='container mx-auto flex flex-wrap items-center justify-between'>
+        <div className={styles.logo}>
+          <img src={Logo} alt='Webpack_and_React' />
+        </div>
+        <nav>
+          <Menu />
+        </nav>
+      </div>
     </header>
   )
 }
