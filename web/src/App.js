@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Header } from './scenes/Header'
 import { Home } from './scenes/HomePage'
 import { Products } from './scenes/Products'
+import { AboutUs } from './scenes/AboutUs'
 import { products } from './store'
 
 import 'tailwindcss/base.css'
@@ -65,8 +66,6 @@ const App = () => {
   if (data) {
     console.log(data.products)
     console.log(data.categories)
-    // const { categories, products } = data
-
     products.setValue(data.products)
   }
 
@@ -83,6 +82,9 @@ const App = () => {
           </Route>
           <Route path='/products'>
             <Products />
+          </Route>
+          <Route path='/about'>
+            <AboutUs />
           </Route>
         </Switch>
       </Router>
