@@ -1,0 +1,14 @@
+.button {
+  max-width: 50px;
+
+  &:focus {
+    outline: none;
+  }
+}
+.zoomIcon {
+  transition: all .15s linear;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
