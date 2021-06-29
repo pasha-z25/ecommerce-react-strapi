@@ -13,10 +13,10 @@ const ProductCard = ({ product }) => {
       <p>{ product.introText }</p>
       <p>${ product.price }</p>
       <p>
-        <Link to={`${process.env.PRODUCTS_SLUG}/${product.category.slug}`}>{product.category.title}</Link>
+        <Link to={`/${process.env.CATEGORIES_SLUG}/${product.category.slug}`}>{product.category.title}</Link>
       </p>
       <p>
-        <Link to={`${process.env.PRODUCTS_SLUG}/${product.slug}?id=${product.id}`}>Details</Link>
+        <Link to={`/${process.env.PRODUCTS_SLUG}/${product.slug}/${product.id}`}>Details</Link>
       </p>
     </div>
   )
