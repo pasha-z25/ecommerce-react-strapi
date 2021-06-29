@@ -64,8 +64,8 @@ const App = () => {
   `)
 
   if (data) {
-    console.log(data.products)
-    console.log(data.categories)
+    // console.log(data.products)
+    // console.log(data.categories)
     products.setValue(data.products)
   }
 
