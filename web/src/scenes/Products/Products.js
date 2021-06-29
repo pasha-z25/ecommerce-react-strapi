@@ -3,7 +3,7 @@ import { Switch, Route, Link, useRouteMatch } from 'react-router-dom'
 import { Product } from './Product'
 import { products } from '~store'
 import { ProductCard } from '~components/ProductCard'
-import { Filter } from '~components/Filter'
+// import { Filter } from '~components/Filter'
 
 const Products = () => {
   const { path, url } = useRouteMatch()
@@ -29,7 +29,7 @@ const Products = () => {
             repellendus soluta?</p>
           <hr/>
           <br/>
-          <Filter />
+          {/* <Filter /> */}
           <br/>
           <hr/>
           <div style={{
@@ -43,7 +43,7 @@ const Products = () => {
           </div>
 
         </Route>
-        <Route path={`${path}/:slug`} component={Product} />
+        <Route path={`${path}/:slug/:id`} component={Product} />
       </Switch>
     </section>
   )
