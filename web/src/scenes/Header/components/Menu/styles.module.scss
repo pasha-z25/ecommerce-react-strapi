@@ -2,6 +2,7 @@
 
 .menu {
   display: flex;
+  justify-content: flex-end;
   color: $color-black;
 
   li + li {

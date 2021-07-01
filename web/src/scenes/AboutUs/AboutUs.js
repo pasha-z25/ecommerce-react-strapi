@@ -13,23 +13,20 @@ const AboutUs = () => {
           }
       }
   `)
-
-  if (data) {
-    console.log(data.about)
-  }
+  const about = data?.about
 
   return (
     <div>
       {loading && <div>Loading...</div>}
       {error && <div>{`Error! ${error.message}`}</div>}
-      {data && (
-        <>
-          <p>{ data.about.title }</p>
-          <p>{ data.about.description }</p>
+      {about && (
+        <div className='container mx-auto px-4'>
+          <p>{ about.title }</p>
+          <p>{ about.description }</p>
           <div>
-            <ReactMarkdown>{ data.about.content }</ReactMarkdown>
+            <ReactMarkdown>{ about.content }</ReactMarkdown>
           </div>
-        </>
+        </div>
       )}
     </div>
   )
