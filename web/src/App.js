@@ -6,6 +6,7 @@ import { Header } from './scenes/Header'
 import { Home } from './scenes/HomePage'
 import { Products } from './scenes/Products'
 import { AboutUs } from './scenes/AboutUs'
+import { Cart } from './scenes/Cart'
 import { products } from './store'
 
 import 'tailwindcss/base.css'
@@ -85,6 +86,9 @@ const App = () => {
           </Route>
           <Route path='/about'>
             <AboutUs />
+          </Route>
+          <Route path='/cart'>
+            <Cart />
           </Route>
         </Switch>
       </Router>
