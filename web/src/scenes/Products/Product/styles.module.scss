@@ -1,0 +1,19 @@
+.productWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 30px;
+}
+.sliderWrapper {
+  padding-top: 60%;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.productInfo {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+.productDescription {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+}
