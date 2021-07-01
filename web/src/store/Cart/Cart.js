@@ -3,14 +3,11 @@ import { makeAutoObservable } from 'mobx'
 function shopCart(value = []) {
   return makeAutoObservable({
     value,
-    get double() {
-      return this.value * 2
+    get getCart() {
+      return this.value
     },
-    get valueLength() {
+    get getLength() {
       return this.value.length
-    },
-    increment() {
-      this.value++
     },
     setValue(val) {
       this.value = val
