@@ -1,7 +1,6 @@
 const path = require('path')
 const dotenv = require('dotenv')
 const webpack = require('webpack')
-const TerserPlugin = require('terser-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -41,6 +40,7 @@ const config = {
       '~assets': path.resolve(__dirname, 'src/assets/'),
       '~scenes': path.resolve(__dirname, 'src/scenes/'),
       '~styles': path.resolve(__dirname, 'src/styles/'),
+      '~modules': path.resolve(__dirname, 'src/modules/'),
       '~components': path.resolve(__dirname, 'src/components/')
     }
   },
@@ -125,7 +125,7 @@ const config = {
       chunks: 'all'
     },
     minimize: true,
-    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()]
+    minimizer: [new CssMinimizerPlugin()]
   }
 }
 
