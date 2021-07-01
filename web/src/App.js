@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useQuery, gql } from '@apollo/client'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -8,11 +8,15 @@ import { Products } from './scenes/Products'
 import { AboutUs } from './scenes/AboutUs'
 import { Cart } from './scenes/Cart'
 import { products } from './store'
+import { availableLanguages } from '~utils/constants'
+import LangContext from './context'
 
-import 'tailwindcss/base.css'
-import 'tailwindcss/utilities.css'
-import 'tailwindcss/components.css'
 import './styles/index.scss'
+
+const defaultLang = availableLanguages[0]
+const browserLang = navigator.language
+const shortLang = browserLang.substring(0, 2).toLowerCase()
+const lang = availableLanguages.findIndex(l => l === shortLang) ? shortLang : defaultLang
 
 const App = () => {
   const { loading, error, data } = useQuery(gql`
@@ -64,15 +68,14 @@ const App = () => {
     }
   `)
 
+  const [language, setLanguage] = useState(lang)
+
   if (data) {
-    // console.log(data.products)
-    // console.log(data.categories)
     products.setValue(data.products)
   }
 
-
   return (
-    <div>
+    <LangContext.Provider value={[language, setLanguage]}>
       {loading && <div>Loading...</div>}
       {error && <div>{`Error! ${error.message}`}</div>}
       <Router>
@@ -92,7 +95,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </LangContext.Provider>
   )
 }
 
