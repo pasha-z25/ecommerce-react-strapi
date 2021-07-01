@@ -19,8 +19,6 @@ const ImageSlider = ({ images }) => {
         spaceBetween={10}
         slidesPerView={1}
         pagination
-        // onSwiper={(swiper) => swiper.update()}
-        // onSwiper={(swiper) => swiper.updateSize()}
       >
         {images.map((image) => {
           return(
@@ -30,7 +28,7 @@ const ImageSlider = ({ images }) => {
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               backgroundSize: 'contain',
-              backgroundImage: `url(${process.env.API_HOST}${image.formats.large?.url})`
+              backgroundImage: `url(${process.env.API_HOST}/uploads/${image.hash}${image.ext})`
             }} />
           )
         })}
@@ -38,12 +36,14 @@ const ImageSlider = ({ images }) => {
       <button type='button' className={styles.button} onClick={() => setToggler(!toggler)}>
         <img src={imageZoomIcon} alt='zoom' className={`${styles.zoomIcon} zoom-icon`}/>
       </button>
-      <FsLightbox
-        toggler={toggler}
-        sources={
-          images.map(image => `${process.env.API_HOST}${image.formats.large?.url}`)
-        }
-      />
+      {images && (
+        <FsLightbox
+          toggler={toggler}
+          sources={
+            images.map(image => `${process.env.API_HOST}/uploads/${image.hash}${image.ext}`)
+          }
+        />
+      )}
     </>
   )
 }
