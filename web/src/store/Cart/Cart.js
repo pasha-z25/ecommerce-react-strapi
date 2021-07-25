@@ -11,6 +11,9 @@ function shopCart(value = []) {
     },
     setValue(val) {
       this.value = val
+    },
+    addProduct(val) {
+      this.value = val
     }
   })
 }
