@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { ImageSlider } from './components/ImageSlider'
 import { text } from '~modules/i18n'
-import { shopCart } from './store'
+import { shopCart } from '~store'
 import imageAddToCart from '~assets/icons/add-to-cart.png'
 
 const ProductCard = ({ product }) => {
