@@ -13,7 +13,7 @@ function shopCart(value = []) {
       this.value = val
     },
     addProduct(val) {
-      this.value = val
+      this.value.push(val)
     }
   })
 }

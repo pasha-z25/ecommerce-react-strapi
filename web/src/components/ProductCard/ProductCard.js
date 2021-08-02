@@ -7,6 +7,9 @@ import { shopCart } from '~store'
 import imageAddToCart from '~assets/icons/add-to-cart.png'
 
 const ProductCard = ({ product }) => {
+  const addToCart = (item) => {
+    shopCart.addProduct(item)
+  }
   return(
     <div className='relative'>
       <div className='relative slider-wrapper' style={{ paddingTop: '60%', marginTop: '15px', marginBottom: '15px'}}>
@@ -19,7 +22,7 @@ const ProductCard = ({ product }) => {
         <Link to={`/${process.env.CATEGORIES_SLUG}/${product.category.slug}`}>{product.category.title}</Link>
       </p>
       <p>
-        <button type='button' onClick={() => shopCart}>
+        <button type='button' onClick={() => addToCart(product)}>
           <img src={imageAddToCart} alt='add to cart icon' style={{maxWidth: '35px'}} className='mr-3' />
           { text('btnAddToCart') }
         </button>
